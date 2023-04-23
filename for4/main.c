@@ -67,8 +67,8 @@ void *merchant1(void* thread_data) {
 
     int l = 0;
 
-    while (l < 10000) {
-        sleep(5);
+    while (l < 1000) {
+        sleep(1);
         sem_wait(first_m_sem);
         if (shared_queue->count > 0) {
             printf("First merchant is working!\n");
@@ -111,8 +111,8 @@ void *merchant2(void* thread_data) {
 
     int l = 0;
 
-    while (l < 10000) {
-        sleep(5);
+    while (l < 1000) {
+      sleep(1);
         sem_wait(second_m_sem);
         if (shared_queue->count > 0) {
             printf("Second merchant is working!\n");
@@ -180,11 +180,15 @@ int main() {
     
     // создание покупателей
     for (int i = 0; i < 5; ++i) {
-        int pid = fork();
-        if (pid < 0) {
-            printf("Error creating process");
-        } else {
-            // i покупатель пробигается по j покупке и добавляет себя к j+1 продавцу
+        pid_t pid;
+        switch (pid = fork())
+        {
+        case -1:
+          printf("Error creating process");
+          return 1;
+          break;
+        case 0:
+          // i покупатель пробигается по j покупке и добавляет себя к j+1 продавцу
             for (int j = 0; j < 5; ++j) {
                 if (all_waist[i][j] == 0) {
                     sem_wait(first_m_sem);
@@ -197,13 +201,17 @@ int main() {
                     shared_queue_2->count++;
                     sem_post(second_m_sem);
                 }
-                sleep(7);
+                sleep(10);
             }
-            exit(0);
+            exit(EXIT_SUCCESS);
+        default:
+          continue;
+          break;
         }
     }
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
+    sigint_handler(0);
     return 0;
 }
 

@@ -59,7 +59,7 @@ int main() {
     int l = 0;
 
     while (l < 10000) {
-        sleep(5);
+        sleep(1);
         sem_wait(first_m_sem);
         if (shared_queue->count > 0) {
             printf("First merchant is working!\n");
