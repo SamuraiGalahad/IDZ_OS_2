@@ -10,8 +10,6 @@
 #include <time.h>
 #include <pthread.h>
 
-#define FIRST_MERCHANT "/f_merchant_sem"
-#define SECOND_MERCHANT "/s_merchant_sem"
 #define SHM_NAME_1 "/shared_memory"
 #define SHM_NAME_2 "/shared_memory_2"
 
@@ -19,20 +17,18 @@ typedef struct {
     int count;
 } shared_data;
 
-sem_t *first_m_sem, *second_m_sem;
+sem_t first_m_sem, second_m_sem;
 shared_data* shared_queue_1, *shared_queue_2;
 
 void sigint_handler(int signum) {
     // освобождение ресурсов семафора
-    sem_close(first_m_sem);
-    sem_unlink(FIRST_MERCHANT);
+    sem_destroy(&first_m_sem);
     // освобождение разделяемой памяти
     munmap(shared_queue_1, sizeof(shared_data));
     shm_unlink(SHM_NAME_1);
 
     // освобождение ресурсов семафора
-    sem_close(second_m_sem);
-    sem_unlink(SECOND_MERCHANT);
+    sem_destroy(&second_m_sem);
     // освобождение разделяемой памяти
     munmap(shared_queue_2, sizeof(shared_data));
     shm_unlink(SHM_NAME_2);
@@ -41,6 +37,14 @@ void sigint_handler(int signum) {
 
 void *merchant1(void* thread_data) {
   shared_data* shared_queue;
+  // создание семафора продавца
+
+    if (sem_init(&first_m_sem, 1, 0) == -1) {
+        perror("Error sem_open: first_m_sem");
+        return 1;
+    }
+    shared_queue->count = 0;
+    
   // создание разделяемой памяти
     int shm_fd = shm_open(SHM_NAME_1, O_CREAT | O_RDWR, 0666);
     if (shm_fd == -1) {
@@ -52,24 +56,17 @@ void *merchant1(void* thread_data) {
         return 1;
     }
 
-    shared_queue = mmap(NULL, sizeof(shared_data), PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    shared_queue = mmap(NULL, sizeof(shared_data), PROT_READ | PROT_WRITE, MAP_SHARED , shm_fd, 0);
     if (shared_queue== MAP_FAILED) {
         perror("mmap");
         return 1;
     }
-    // создание семафора продавца
-    first_m_sem = sem_open(FIRST_MERCHANT, O_CREAT, 0666, 1);
-    if (first_m_sem == SEM_FAILED) {
-        perror("Error sem_open: first_m_sem");
-        return 1;
-    }
-    shared_queue->count = 0;
 
     int l = 0;
 
-    while (l < 1000) {
+    while (l < 200) {
         sleep(1);
-        sem_wait(first_m_sem);
+        sem_wait(&first_m_sem);
         if (shared_queue->count > 0) {
             printf("First merchant is working!\n");
             if (shared_queue->count > 0) {
@@ -79,12 +76,20 @@ void *merchant1(void* thread_data) {
         } else {
             printf("First merchant is sleeping!\n");
         }
-        sem_post(first_m_sem);
+        sem_post(&first_m_sem);
     }
 }
 
 void *merchant2(void* thread_data) {
   shared_data* shared_queue;
+
+  // создание семафора продавца
+    if (sem_init(&second_m_sem, 1, 0) == -1) {
+    perror("Error sem_open: second_m_sem");
+    return 1;
+    }
+    
+  // создание разделяемой памяти
   int shm_fd = shm_open(SHM_NAME_2, O_CREAT | O_RDWR, 0666);
     if (shm_fd == -1) {
         perror("shm_open");
@@ -100,20 +105,13 @@ void *merchant2(void* thread_data) {
         perror("mmap");
         return 1;
     }
-
-    // создание семафора продавца
-    second_m_sem = sem_open(SECOND_MERCHANT, O_CREAT, 0666, 1);
-    if (second_m_sem == SEM_FAILED) {
-        perror("Error sem_open: second_m_sem");
-        return 1;
-    }
     shared_queue->count = 0;
 
     int l = 0;
 
-    while (l < 1000) {
+    while (l < 200) {
       sleep(1);
-        sem_wait(second_m_sem);
+        sem_wait(&second_m_sem);
         if (shared_queue->count > 0) {
             printf("Second merchant is working!\n");
             if (shared_queue->count > 0) {
@@ -123,7 +121,7 @@ void *merchant2(void* thread_data) {
         } else {
             printf("Second merchant is sleeping!\n");
         }
-        sem_post(second_m_sem);
+        sem_post(&second_m_sem);
     }
 }
 
@@ -141,16 +139,16 @@ int main() {
 
 
     // открытие именованных семафоров
-    first_m_sem = sem_open(FIRST_MERCHANT, O_CREAT, 0666, 1);
-    if (first_m_sem == SEM_FAILED) {
-        perror("Error sem_open: first_m_sem");
-        return 1;
-    }
-    second_m_sem = sem_open(SECOND_MERCHANT, O_CREAT, 0666, 1);
-    if (second_m_sem == SEM_FAILED) {
-        perror("Error sem_open: second_m_sem");
-        return 1;
-    }
+    // first_m_sem = sem_open(FIRST_MERCHANT, O_CREAT, 0666, 1);
+    // if (first_m_sem == SEM_FAILED) {
+    //     perror("Error sem_open: first_m_sem");
+    //     return 1;
+    // }
+    // second_m_sem = sem_open(SECOND_MERCHANT, O_CREAT, 0666, 1);
+    // if (second_m_sem == SEM_FAILED) {
+    //     perror("Error sem_open: second_m_sem");
+    //     return 1;
+    // }
 
     // открытие области памяти первого торговца
     int shm_fd_1 = shm_open(SHM_NAME_1, O_CREAT | O_RDWR, 0666);
@@ -191,15 +189,15 @@ int main() {
           // i покупатель пробигается по j покупке и добавляет себя к j+1 продавцу
             for (int j = 0; j < 5; ++j) {
                 if (all_waist[i][j] == 0) {
-                    sem_wait(first_m_sem);
+                    sem_wait(&first_m_sem);
                     printf("%d in first queue\n",i);
                     shared_queue_1->count++;
-                    sem_post(first_m_sem);
+                    sem_post(&first_m_sem);
                 } else {
-                    sem_wait(second_m_sem);
+                    sem_wait(&second_m_sem);
                     printf("%d in second queue\n",i);
                     shared_queue_2->count++;
-                    sem_post(second_m_sem);
+                    sem_post(&second_m_sem);
                 }
                 sleep(10);
             }

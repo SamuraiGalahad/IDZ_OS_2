@@ -1,0 +1,298 @@
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+0 in first queue
+0 in first queue
+0 in first queue
+0 in second queue
+0 in second queue
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+1 in first queue
+1 in second queue
+1 in first queue
+1 in second queue
+1 in first queue
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+2 in second queue
+2 in first queue
+2 in second queue
+2 in first queue
+2 in second queue
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+4 in second queue
+4 in second queue
+4 in second queue
+4 in second queue
+4 in second queue
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+3 in first queue
+3 in first queue
+3 in first queue
+3 in first queue
+3 in first queue
+job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Seoncd merchant is working!
+Now one client is not in queue! Good job!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is working!
+Now one client is not in queue! Good job!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!
+Second merchant is sleeping!
+First merchant is sleeping!

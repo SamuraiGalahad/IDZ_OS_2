@@ -84,11 +84,15 @@ int main() {
     
     // создание покупателей
     for (int i = 0; i < 5; ++i) {
-        int pid = fork();
-        if (pid < 0) {
-            printf("Error creating process");
-        } else {
-            // i покупатель пробигается по j покупке и добавляет себя к j+1 продавцу
+        pid_t pid;
+        switch (pid = fork())
+        {
+        case -1:
+          printf("Error creating process");
+          return 1;
+          break;
+        case 0:
+          // i покупатель пробигается по j покупке и добавляет себя к j+1 продавцу
             for (int j = 0; j < 5; ++j) {
                 if (all_waist[i][j] == 0) {
                     sem_wait(first_m_sem);
@@ -101,8 +105,14 @@ int main() {
                     shared_queue_2->count++;
                     sem_post(second_m_sem);
                 }
-                sleep(7);
+                sleep(10);
             }
+            exit(EXIT_SUCCESS);
+        default:
+          continue;
+          break;
         }
     }
+    sigint_handler(0);
+    return 0;
 }

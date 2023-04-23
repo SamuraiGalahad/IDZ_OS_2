@@ -32,7 +32,8 @@ void sigint_handler(int signum) {
 int main() {
     signal(SIGINT, sigint_handler);
     signal(SIGTERM, sigint_handler);
-    // создание разделяемой памяти
+    shared_data* shared_queue;
+  // создание разделяемой памяти
     int shm_fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
     if (shm_fd == -1) {
         perror("shm_open");
@@ -58,7 +59,7 @@ int main() {
 
     int l = 0;
 
-    while (l < 10000) {
+    while (l < 100) {
         sleep(1);
         sem_wait(first_m_sem);
         if (shared_queue->count > 0) {
@@ -72,4 +73,5 @@ int main() {
         }
         sem_post(first_m_sem);
     }
+    l++;
 }

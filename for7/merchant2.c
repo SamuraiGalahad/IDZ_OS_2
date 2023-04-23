@@ -33,8 +33,8 @@ int main() {
     signal(SIGINT, sigint_handler);
     signal(SIGTERM, sigint_handler);
 
-    // создание разделяемой памяти
-    int shm_fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
+    shared_data* shared_queue;
+  int shm_fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
     if (shm_fd == -1) {
         perror("shm_open");
         return 1;
@@ -60,8 +60,8 @@ int main() {
 
     int l = 0;
 
-    while (l < 10000) {
-        sleep(5);
+    while (l < 100) {
+      sleep(1);
         sem_wait(second_m_sem);
         if (shared_queue->count > 0) {
             printf("Second merchant is working!\n");
@@ -73,5 +73,6 @@ int main() {
             printf("Second merchant is sleeping!\n");
         }
         sem_post(second_m_sem);
+        l++;
     }
 }
