@@ -36,14 +36,13 @@ void sigint_handler(int signum) {
 }
 
 void *merchant1(void* thread_data) {
-  shared_data* shared_queue;
-  // создание семафора продавца
+    shared_data* shared_queue;
+    // создание семафора продавца
 
     if (sem_init(&first_m_sem, 1, 0) == -1) {
         perror("Error sem_open: first_m_sem");
         return 1;
     }
-    shared_queue->count = 0;
     
   // создание разделяемой памяти
     int shm_fd = shm_open(SHM_NAME_1, O_CREAT | O_RDWR, 0666);
@@ -62,9 +61,11 @@ void *merchant1(void* thread_data) {
         return 1;
     }
 
+    shared_queue->count = 0;
+
     int l = 0;
 
-    while (l < 200) {
+    while (l < 100) {
         sleep(1);
         sem_wait(&first_m_sem);
         if (shared_queue->count > 0) {
@@ -77,6 +78,7 @@ void *merchant1(void* thread_data) {
             printf("First merchant is sleeping!\n");
         }
         sem_post(&first_m_sem);
+        l++;
     }
 }
 
@@ -109,7 +111,7 @@ void *merchant2(void* thread_data) {
 
     int l = 0;
 
-    while (l < 200) {
+    while (l < 100) {
       sleep(1);
         sem_wait(&second_m_sem);
         if (shared_queue->count > 0) {
@@ -122,6 +124,7 @@ void *merchant2(void* thread_data) {
             printf("Second merchant is sleeping!\n");
         }
         sem_post(&second_m_sem);
+        l++;
     }
 }
 
@@ -131,25 +134,11 @@ int main() {
     signal(SIGINT, sigint_handler);
     signal(SIGTERM, sigint_handler);
     int num_customers = 5;
-
+    printf("Here");
     pthread_t thread1, thread2;
 
     pthread_create(&thread1, NULL, merchant1, NULL);
     pthread_create(&thread2, NULL, merchant2, NULL);
-
-
-    // открытие именованных семафоров
-    // first_m_sem = sem_open(FIRST_MERCHANT, O_CREAT, 0666, 1);
-    // if (first_m_sem == SEM_FAILED) {
-    //     perror("Error sem_open: first_m_sem");
-    //     return 1;
-    // }
-    // second_m_sem = sem_open(SECOND_MERCHANT, O_CREAT, 0666, 1);
-    // if (second_m_sem == SEM_FAILED) {
-    //     perror("Error sem_open: second_m_sem");
-    //     return 1;
-    // }
-
     // открытие области памяти первого торговца
     int shm_fd_1 = shm_open(SHM_NAME_1, O_CREAT | O_RDWR, 0666);
     if (shm_fd_1 == -1) {
